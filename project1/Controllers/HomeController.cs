@@ -15,17 +15,35 @@ namespace project1.Controllers
 
         private ISignUpRepository _repository;
 
-        public HomeController(ILogger<HomeController> logger, ISignUpRepository repository)
+        private SignUpDbContext context { get; set; }
+
+        // we decided to go with a db context instead of a repository, this is the old repository code
+        //public HomeController(ILogger<HomeController> logger, ISignUpRepository repository)
+        //{
+        //    _logger = logger;
+        //    _repository = repository;
+        //    context = application.ApplicationServices.
+        //        //CreateScope().ServiceProvider.GetRequiredService<SignUpDbContext>();
+        //}
+
+        public HomeController(SignUpDbContext con)
         {
-            _logger = logger;
-            _repository = repository;
+            context = con;
         }
 
         public IActionResult Index()
         {
-            return View(_repository.Projects);
+            return View(context.Projects);
         }
-
+        [HttpPost]
+        public IActionResult Index(Project newProj)
+        {
+            if (ModelState.IsValid)
+            {
+                //_repository.Projects.Add(newProj);
+            }
+            return View();
+        }
         public IActionResult Privacy()
         {
             return View();
