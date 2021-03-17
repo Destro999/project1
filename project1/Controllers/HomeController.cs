@@ -17,6 +17,8 @@ namespace project1.Controllers
 
         private SignUpDbContext context { get; set; }
 
+        private TourTimes tourTimes { get; set; }
+
         // we decided to go with a db context instead of a repository, this is the old repository code
         //public HomeController(ILogger<HomeController> logger, ISignUpRepository repository)
         //{
@@ -30,9 +32,11 @@ namespace project1.Controllers
         public HomeController(SignUpDbContext con)
         {
             context = con;
-            TourTimes tourTimes = new TourTimes();
+            tourTimes = new TourTimes();
         }
 
+        //default IActionResult for index view when you pull up the website
+        [HttpGet]
         public IActionResult Index()
         {
             return View(context.Projects);
@@ -43,9 +47,15 @@ namespace project1.Controllers
         {
             if (ModelState.IsValid)
             {
-                //_repository.Projects.Add(newProj);
+                context.Projects.Add(newProj);
+                tourTimes.UpdateTimeSlot(newProj.DayAndTime, false); //Brandon is going to add the DayAndTime attribute to this class
             }
             return View();
+        }
+        //IActionResult below is used to list all the time slots available to sign up for, so Nick can use it for the SignUp page
+        public IActionResult SignUp()
+        {
+            return View("SignUp", )
         }
         public IActionResult Privacy()
         {
