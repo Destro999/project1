@@ -26,15 +26,18 @@ namespace project1.Controllers
         //        //CreateScope().ServiceProvider.GetRequiredService<SignUpDbContext>();
         //}
 
+        //constructor for the HomeController. Establish context to database and initialize TourTimes object
         public HomeController(SignUpDbContext con)
         {
             context = con;
+            TourTimes tourTimes = new TourTimes();
         }
 
         public IActionResult Index()
         {
             return View(context.Projects);
         }
+        //IActionResult below will be used when the signup form is submitted. It will save the signup in the database, and update the TourTime to be taken.
         [HttpPost]
         public IActionResult Index(Project newProj)
         {
