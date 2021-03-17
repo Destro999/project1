@@ -9,7 +9,7 @@ using project1.Models;
 namespace project1.Migrations
 {
     [DbContext(typeof(SignUpDbContext))]
-    [Migration("20210316023623_Initial")]
+    [Migration("20210317162628_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -23,6 +23,9 @@ namespace project1.Migrations
                     b.Property<int>("GroupId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("DayTime")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("EmailAddress")
                         .HasColumnType("TEXT");

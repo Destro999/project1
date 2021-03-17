@@ -13,6 +13,7 @@ namespace project1.Models
         public string GroupName { get; set; }
         public int GroupSize { get; set; }
         public string EmailAddress { get; set; }
+        public string DayTime { get; set; }
         public long? PhoneNumber { get; set; }
 
     }

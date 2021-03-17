@@ -28,7 +28,8 @@ namespace project1.Models
                         GroupName = "2-3 IS Core",
                         GroupSize = 4,
                         EmailAddress = "somethingsmart@junkmail.com",
-                        PhoneNumber = 5555555555
+                        PhoneNumber = 5555555555,
+                        DayTime = "Monday 8:00am"
                     },
 
                     new Project
@@ -36,7 +37,8 @@ namespace project1.Models
                         GroupName = "2-4 IS Core",
                         GroupSize = 4,
                         EmailAddress = "SignUp@junkmail.com",
-                        PhoneNumber = 5555555556
+                        PhoneNumber = 5555555556,
+                        DayTime = "Monday 8:00am"
                     },
 
                     new Project
@@ -44,7 +46,8 @@ namespace project1.Models
                         GroupName = "2-5 IS Core",
                         GroupSize = 4,
                         EmailAddress = "GetMeAnA@junkmail.com",
-                        PhoneNumber = 5555555557
+                        PhoneNumber = 5555555557,
+                        DayTime = "Monday 8:00am"
                     }
 
                 );

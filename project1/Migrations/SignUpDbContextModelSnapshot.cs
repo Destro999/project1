@@ -22,6 +22,9 @@ namespace project1.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("DayTime")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("EmailAddress")
                         .HasColumnType("TEXT");
 
