@@ -15,6 +15,7 @@ namespace project1.Migrations
                     GroupName = table.Column<string>(nullable: true),
                     GroupSize = table.Column<int>(nullable: false),
                     EmailAddress = table.Column<string>(nullable: true),
+                    DayTime = table.Column<string>(nullable: true),
                     PhoneNumber = table.Column<long>(nullable: true)
                 },
                 constraints: table =>

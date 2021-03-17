@@ -47,7 +47,11 @@ namespace project1.Controllers
             if (ModelState.IsValid)
             {
                 context.Projects.Add(newProj);
+<<<<<<< HEAD
                 //tourTimes.UpdateTimeSlot(newProj.DayAndTime, false); //Brandon is going to add the DayAndTime attribute to this class
+=======
+                tourTimes.UpdateTimeSlot(newProj.DayTime, false); //Brandon is going to add the DayAndTime attribute to this class
+>>>>>>> 6f3eaa014128c41d89cb994ec52d4a9e636be900
             }
             return View();
         }
