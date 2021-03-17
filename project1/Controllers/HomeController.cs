@@ -11,15 +11,14 @@ namespace project1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
-
-        private ISignUpRepository _repository;
-
         private SignUpDbContext context { get; set; }
 
         private TourTimes tourTimes { get; set; }
 
         // we decided to go with a db context instead of a repository, this is the old repository code
+        //--------------------------------------------------------------------------------------------
+        //private readonly ILogger<HomeController> _logger;
+        //private ISignUpRepository _repository;
         //public HomeController(ILogger<HomeController> logger, ISignUpRepository repository)
         //{
         //    _logger = logger;
@@ -55,7 +54,7 @@ namespace project1.Controllers
         //IActionResult below is used to list all the time slots available to sign up for, so Nick can use it for the SignUp page
         public IActionResult SignUp()
         {
-            return View("SignUp", )
+            return View("SignUp", tourTimes);
         }
         public IActionResult Privacy()
         {
@@ -67,6 +66,5 @@ namespace project1.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
-
     }
 }
