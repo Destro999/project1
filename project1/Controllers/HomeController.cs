@@ -65,6 +65,8 @@ namespace project1.Controllers
         {
             return View("SignUp", tourTimes);
         }
+
+
         public IActionResult Privacy()
         {
             return View();
