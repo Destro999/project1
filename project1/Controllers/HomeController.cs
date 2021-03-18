@@ -42,16 +42,13 @@ namespace project1.Controllers
         }
         //IActionResult below will be used when the signup form is submitted. It will save the signup in the database, and update the TourTime to be taken.
         [HttpPost]
-        public IActionResult Index(Project newProj)
+        public IActionResult Add(Project newProj)
         {
             if (ModelState.IsValid)
             {
                 context.Projects.Add(newProj);
-//<<<<<<< HEAD
-                //tourTimes.UpdateTimeSlot(newProj.DayAndTime, false); //Brandon is going to add the DayAndTime attribute to this class
-//=======
                 tourTimes.UpdateTimeSlot(newProj.DayTime, false); //Brandon is going to add the DayAndTime attribute to this class
-//>>>>>>> 6f3eaa014128c41d89cb994ec52d4a9e636be900
+                context.SaveChanges();
             }
             return View();
         }
@@ -59,6 +56,10 @@ namespace project1.Controllers
         public IActionResult SignUp()
         {
             return View("SignUp", tourTimes);
+        }
+        public IActionResult ViewAppointments()
+        {
+            return View(context.Projects);
         }
         public IActionResult Privacy()
         {
