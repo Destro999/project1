@@ -44,7 +44,7 @@ namespace project1.Controllers
         }
         //IActionResult below will be used when the signup form is submitted. It will save the signup in the database, and update the TourTime to be taken.
         [HttpPost]
-        public IActionResult AddSignUp(Project newProj)
+        public IActionResult Add(Project newProj)
         {
             if (ModelState.IsValid)
             {
@@ -64,6 +64,11 @@ namespace project1.Controllers
         public IActionResult SignUp()
         {
             return View("SignUp", tourTimes);
+        }
+        [HttpPost]
+        public IActionResult Form()
+        {
+            return View();
         }
         public IActionResult Privacy()
         {
