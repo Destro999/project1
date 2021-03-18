@@ -3,23 +3,4 @@
 }
 @model IEnumerable<Project>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
 
-<h1>Jonah was here</h1>
-
-@*Check to see if database works*@
-
-@foreach (var x in Model)
-{
-<div>
-    <h3>@x.GroupName</h3>
-    <p>@x.GroupSize</p>
-    <p>@x.EmailAddress</p>
-    <p>@x.PhoneNumber</p>
-    <p>@x.DayTime</p>
-
-</div>
-}

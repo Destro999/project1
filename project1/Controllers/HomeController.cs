@@ -55,6 +55,7 @@ namespace project1.Controllers
             }
             return View();
         }
+       
         //IActionResult below is used to list all the time slots available to sign up for, so Nick can use it for the SignUp page
         public IActionResult SignUp()
         {
