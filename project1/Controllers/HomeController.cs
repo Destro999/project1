@@ -54,11 +54,19 @@ namespace project1.Controllers
             }
             return View();
         }
+       
         //IActionResult below is used to list all the time slots available to sign up for, so Nick can use it for the SignUp page
         public IActionResult SignUp()
         {
             return View("SignUp", tourTimes);
         }
+        //IActionResult below us used to get to the form, from the SignUp page that lists all the time slots
+        [HttpPost]
+        public IActionResult SignUp(string time)
+        {
+            return View("AppointmentDetails", time);
+        }
+
         public IActionResult ViewAppointments()
         {
             return View(context.Projects);
