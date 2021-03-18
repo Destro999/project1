@@ -4,26 +4,30 @@
 @{
 }
 
-@model Project
-<h2>Check out now</h2>
-<p>Please enter your details, and we'll ship your goods right away!</p>
-<form asp-action="Checkout" method="post">
-    <div class="form-group">
-        <label>Group Name:</label><input asp-for="GroupName" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Group Size:</label><input asp-for="GroupSize" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Email Address:</label><input asp-for="EmailAddress" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Date and Time:</label><input asp-for="DayTime" class="form-control" />
-    </div>
-    <div class="form-group">
-        <label>Phone Number:</label><input asp-for="PhoneNumber" class="form-control" />
-    </div>
-    <div class="text-center">
-        <input class="btn btn-primary" type="submit" value="Complete Order" />
-    </div>
+@model project1.Models.ViewModels.IndexViewModel
+<h2>Group Information</h2>
+<p>Please enter your details, and we'll set up your appointment right away!</p>
+<form asp-action="Add" method="post">
+
+    <label>Group Name:</label>
+    <input asp-for="@Model.Projects.GroupName" />
+    <br />
+ 
+    <label>Group Size:</label>
+    <input asp-for="@Model.Projects.GroupSize" />
+    <br />
+
+    <label>Email Address:</label>
+    <input asp-for="@Model.Projects.EmailAddress"/>
+    <br />
+
+    <label>Date/Time</label>
+    <input value="@Model.Time" asp-for="@Model.Projects.DayTime" readonly/>
+    <br />
+
+    <label>Phone Number:</label>
+    <input asp-for="@Model.Projects.PhoneNumber"/>
+    <br />
+
+    <input class="btn btn-primary" type="submit" value="Set Appointment" />
 </form>

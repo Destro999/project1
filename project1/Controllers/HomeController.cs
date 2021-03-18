@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using project1.Models.ViewModels;
 
 namespace project1.Controllers
 {
@@ -57,8 +58,24 @@ namespace project1.Controllers
         //IActionResult below is used to list all the time slots available to sign up for, so Nick can use it for the SignUp page
         public IActionResult SignUp()
         {
+
             return View("SignUp", tourTimes);
         }
+
+        [HttpPost]
+        public IActionResult SignUp(string time)
+        {
+            return View("AppointmentDetails", new IndexViewModel
+            {
+                Time = time
+            });
+        }
+
+        public IActionResult AppointmentDetails()
+        {
+            return View();
+        }
+
         public IActionResult ViewAppointments()
         {
             return View(context.Projects);
