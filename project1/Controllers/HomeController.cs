@@ -11,25 +11,27 @@ namespace project1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private SignUpDbContext context { get; set; }
 
         private TourTimes tourTimes { get; set; }
 
         // we decided to go with a db context instead of a repository, this is the old repository code
         //--------------------------------------------------------------------------------------------
-        //private readonly ILogger<HomeController> _logger;
+        
         //private ISignUpRepository _repository;
         //public HomeController(ILogger<HomeController> logger, ISignUpRepository repository)
         //{
-        //    _logger = logger;
+        //    
         //    _repository = repository;
         //    context = application.ApplicationServices.
         //        //CreateScope().ServiceProvider.GetRequiredService<SignUpDbContext>();
         //}
 
         //constructor for the HomeController. Establish context to database and initialize TourTimes object
-        public HomeController(SignUpDbContext con)
+        public HomeController(ILogger<HomeController> logger, SignUpDbContext con)
         {
+            _logger = logger;
             context = con;
             tourTimes = new TourTimes();
         }
@@ -42,19 +44,22 @@ namespace project1.Controllers
         }
         //IActionResult below will be used when the signup form is submitted. It will save the signup in the database, and update the TourTime to be taken.
         [HttpPost]
-        public IActionResult Index(Project newProj)
+        public IActionResult AddSignUp(Project newProj)
         {
             if (ModelState.IsValid)
             {
                 context.Projects.Add(newProj);
-<<<<<<< HEAD
-                //tourTimes.UpdateTimeSlot(newProj.DayAndTime, false); //Brandon is going to add the DayAndTime attribute to this class
-=======
                 tourTimes.UpdateTimeSlot(newProj.DayTime, false); //Brandon is going to add the DayAndTime attribute to this class
->>>>>>> 6f3eaa014128c41d89cb994ec52d4a9e636be900
+                context.SaveChanges();
+                return View("Index", context.Projects);
             }
-            return View();
+            else
+            {
+                return View("SignUp", newProj);
+            }
+            
         }
+        [HttpGet]
         //IActionResult below is used to list all the time slots available to sign up for, so Nick can use it for the SignUp page
         public IActionResult SignUp()
         {
