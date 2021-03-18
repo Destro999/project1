@@ -11,6 +11,7 @@ namespace project1.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ILogger<HomeController> _logger;
         private SignUpDbContext context { get; set; }
 
         private TourTimes tourTimes { get; set; }
@@ -28,8 +29,9 @@ namespace project1.Controllers
         //}
 
         //constructor for the HomeController. Establish context to database and initialize TourTimes object
-        public HomeController(SignUpDbContext con)
+        public HomeController(ILogger<HomeController> logger, SignUpDbContext con)
         {
+            _logger = logger;
             context = con;
             tourTimes = new TourTimes();
         }
