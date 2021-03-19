@@ -21,11 +21,11 @@ namespace project1.Models
 
         public List<TimeSlot> TimeSlots { get; set; }
 
-        public void UpdateTimeSlot(string timeSlotToUpdate, bool newIsAvailable)
-        {
-            var slot = TimeSlots.FirstOrDefault(x => x.Time == timeSlotToUpdate);
-            slot.IsAvailable = newIsAvailable;
-        }
+        //public void UpdateTimeSlot(string timeSlotToUpdate, bool newIsAvailable)
+        //{
+        //    var slot = TimeSlots.FirstOrDefault(x => x.Time == timeSlotToUpdate);
+        //    slot.IsAvailable = newIsAvailable;
+        //}
 
         public TourTimes()
         {

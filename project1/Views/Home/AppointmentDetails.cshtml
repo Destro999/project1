@@ -5,29 +5,42 @@
 }
 
 @model project1.Models.ViewModels.IndexViewModel
-<h2>Group Information</h2>
-<p>Please enter your details, and we'll set up your appointment right away!</p>
-<form asp-action="Add" method="post">
+    <center>
+        <!--This form takes in the information for the Appointment-->
+        <h2>Group Information</h2>
+        <p>Please enter your details, and we'll set up your appointment right away!</p>
+        <form asp-action="AppointmentDetails" method="post">
 
-    <label>Group Name:</label>
-    <input asp-for="@Model.Projects.GroupName" />
-    <br />
- 
-    <label>Group Size:</label>
-    <input asp-for="@Model.Projects.GroupSize" />
-    <br />
+            <!--Group Name Field-->
+            <label>Group Name:</label>
+            <input asp-for="@Model.Projects.GroupName" name="groupName" />
+            <input type="hidden" asp-for="@Model.Projects.GroupName" />
+            <br />
 
-    <label>Email Address:</label>
-    <input asp-for="@Model.Projects.EmailAddress"/>
-    <br />
+            <!--Group Size Field-->
+            <label>Group Size:</label>
+            <input asp-for="@Model.Projects.GroupSize" name="groupSize" />
+            <input type="hidden" asp-for="@Model.Projects.GroupSize" />
+            <br />
 
-    <label>Date/Time</label>
-    <input value="@Model.Time" asp-for="@Model.Projects.DayTime" readonly/>
-    <br />
+            <!--Email Field-->
+            <label>Email Address:</label>
+            <input asp-for="@Model.Projects.EmailAddress" name="emailAddress" />
+            <input type="hidden" asp-for="@Model.Projects.EmailAddress" />
+            <br />
 
-    <label>Phone Number:</label>
-    <input asp-for="@Model.Projects.PhoneNumber"/>
-    <br />
+            <!--Day and Time Field that is not editable-->
+            <label>Date/Time</label>
+            <input value="@Model.Time" asp-for="@Model.Projects.DayTime" name="dayTime" readonly />
+            <input type="hidden" asp-for="@Model.Projects.DayTime" />
+            <br />
 
-    <input class="btn btn-primary" type="submit" value="Set Appointment" />
-</form>
+            <!--Phone field-->
+            <label>Phone Number:</label>
+            <input asp-for="@Model.Projects.PhoneNumber" name="phoneNumber" />
+            <input type="hidden" asp-for="@Model.Projects.PhoneNumber" />
+            <br />
+
+            <input class="btn btn-success" type="submit" value="Set Appointment" />
+        </form>
+    </center>

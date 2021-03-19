@@ -17,18 +17,6 @@ namespace project1.Controllers
 
         private TourTimes tourTimes { get; set; }
 
-        // we decided to go with a db context instead of a repository, this is the old repository code
-        //--------------------------------------------------------------------------------------------
-        //private readonly ILogger<HomeController> _logger;
-        //private ISignUpRepository _repository;
-        //public HomeController(ILogger<HomeController> logger, ISignUpRepository repository)
-        //{
-        //    _logger = logger;
-        //    _repository = repository;
-        //    context = application.ApplicationServices.
-        //        //CreateScope().ServiceProvider.GetRequiredService<SignUpDbContext>();
-        //}
-
         //constructor for the HomeController. Establish context to database and initialize TourTimes object
         public HomeController(ILogger<HomeController> logger, SignUpDbContext con)
         {
@@ -43,26 +31,19 @@ namespace project1.Controllers
         {
             return View(context.Projects);
         }
-        //IActionResult below will be used when the signup form is submitted. It will save the signup in the database, and update the TourTime to be taken.
-        [HttpPost]
-        public IActionResult Add(Project newProj)
-        {
-            if (ModelState.IsValid)
-            {
-                context.Projects.Add(newProj);
-                tourTimes.UpdateTimeSlot(newProj.DayTime, false); //Brandon is going to add the DayAndTime attribute to this class
-                context.SaveChanges();
-            }
-            return View();
-        }
+      
        
         //IActionResult below is used to list all the time slots available to sign up for, so Nick can use it for the SignUp page
         public IActionResult SignUp()
         {
-
+            foreach (var proj in context.Projects)
+            {
+                tourTimes.TimeSlots.RemoveAll(r => r.Time == proj.DayTime);
+            }
             return View("SignUp", tourTimes);
         }
 
+        //IACTION below takes the time from the button and sets it to an IndexView Model before passing it to the Appointment Details page
         [HttpPost]
         public IActionResult SignUp(string time)
         {
@@ -72,11 +53,34 @@ namespace project1.Controllers
             });
         }
 
+        //Takes the information from the form and sets it into a Project object and saves it to the DBContext
+        [HttpPost]
+        public IActionResult AppointmentDetails(string groupName, int groupSize, string dayTime, string emailAddress, long phoneNumber)
+        {
+            if (ModelState.IsValid)
+            {
+                Project newProj = new Project
+                {
+                    GroupName = groupName,
+                    GroupSize = groupSize,
+                    DayTime = dayTime,
+                    EmailAddress = emailAddress,
+                    PhoneNumber = phoneNumber
+                };
+                context.Projects.Add(newProj);
+                context.SaveChanges();
+            }
+
+            return View("ViewAppointments", context.Projects) ;
+        }
+
+        //Sends it to the AppointmentDetails page
         public IActionResult AppointmentDetails()
         {
             return View();
         }
 
+        //Sends to ViewAppointment page
         public IActionResult ViewAppointments()
         {
             return View(context.Projects);
